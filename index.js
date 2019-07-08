@@ -5,7 +5,7 @@ const core = require("@babel/core")
 const loaderUtils = require("loader-utils");
 
 const DEFAULT = {
-    cacheCode: `console.warn(e)`
+    catchCode: `console.warn(e)`
 }
 
 module.exports = function (source) {
