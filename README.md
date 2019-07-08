@@ -22,14 +22,16 @@ async function func() {
                 resolve('success');
             }, 3000);
         });
-    } catch (e) {//...}
+    } catch (e) {
+    //...
+    }
 }
 ```
 
 ## Install
 
 ```javascript
-npm i async-catch-loader
+npm i async-catch-loader -D
 ```
 
 ## Usage
@@ -53,9 +55,9 @@ module: {
 ```
 
 ## Options
-|Name|Type|Description|
-|:--:|:--:|:----------|
-|**`catchCode`**|`{String}`|`catch 子句中的代码片段，错误对象的变量名为 e`
-
-
+|Name|Type|Default|Description|
+|:--:|:--:|:--:|:----------|
+|**`identifier`**|`{String}`|`"e"`|`catch 子句中的错误对象标识符`
+|**`catchCode`**|`{String}`|`"console.error(e)"`|`catch 子句中的代码片段`
+|**`alwaysInject`**|`{Boolean}`|`false`|`当 await 已经存在 try/catch 时，是否始终注入`
 

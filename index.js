@@ -5,7 +5,9 @@ const core = require("@babel/core")
 const loaderUtils = require("loader-utils");
 
 const DEFAULT = {
-    catchCode: `console.warn(e)`
+    catchCode: `console.error(e)`,
+    alwaysInject:false,
+    identifier:"e"
 }
 
 module.exports = function (source) {
@@ -15,15 +17,21 @@ module.exports = function (source) {
         ...DEFAULT,
         ...options,
     }
-    let catchBody = []
     let catchAst = parser.parse(options.catchCode)
-    catchBody = catchAst.program.body
+    let catchBody = catchAst.program.body
+
     traverse(ast, {
         AwaitExpression(path) {
             if (path.node.done) return
             path.node.done = true //防止 AwaitExpression 无限递归导致栈溢出
 
-            let identifierAst = t.identifier('e')
+            if (
+                !options.alwaysInject &&
+                path.findParent((path) => t.isTryStatement(path.node))
+            ) return // 当当前 Ast 的父级包含 try/catch，则取消这次注入
+
+            let identifierAst = t.identifier(options.identifier)
+
             if (t.isVariableDeclarator(path.parent)) { // 变量声明
                 let variableDeclarationPath = path.parentPath.parentPath
                 let tryCatchAst = t.tryStatement(
