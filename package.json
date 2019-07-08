@@ -1,0 +1,32 @@
+{
+  "name": "async-catch-loader",
+  "version": "1.0.0",
+  "description": "a webpack loader that captures error of async function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeyan1996/async-catch-loader.git"
+  },
+  "keywords": [
+    "loader",
+    "webpack",
+    "try",
+    "catch"
+  ],
+  "author": "yeyan1996",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yeyan1996/async-catch-loader/issues"
+  },
+  "homepage": "https://github.com/yeyan1996/async-catch-loader#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/parser": "^7.5.0",
+    "@babel/traverse": "^7.5.0",
+    "@babel/types": "^7.5.0",
+    "loader-utils": "^1.2.3"
+  }
+}
