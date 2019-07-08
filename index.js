@@ -5,14 +5,18 @@ const core = require("@babel/core")
 const loaderUtils = require("loader-utils");
 
 const DEFAULT = {
-    catchCode: `console.error(e)`,
+    catchCode: `console.error("async-catch-loader: "e)`,
     alwaysInject:false,
     identifier:"e"
 }
 
 module.exports = function (source) {
     let options = loaderUtils.getOptions(this)
-    let ast = parser.parse(source)
+
+    let ast = parser.parse(source,{
+        sourceType:'module', // 支持 es6 module
+        plugins:['dynamicImport'] // 支持动态 import
+    })
     options = {
         ...DEFAULT,
         ...options,
