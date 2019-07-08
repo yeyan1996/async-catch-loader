@@ -1,6 +1,6 @@
 {
   "name": "async-catch-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a webpack loader that captures error of async function",
   "main": "index.js",
   "scripts": {

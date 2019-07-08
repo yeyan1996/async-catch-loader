@@ -12,7 +12,7 @@ module.exports = function (source) {
     let options = loaderUtils.getOptions(this)
     let ast = parser.parse(source)
     options = {
-        DEFAULT,
+        ...DEFAULT,
         ...options,
     }
     let catchBody = []
