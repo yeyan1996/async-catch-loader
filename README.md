@@ -44,7 +44,7 @@ module: {
             use:{
                 loader:'async-catch-loader',
                 options:{
-                    cacheCode:`alert(e)`
+                    catchCode:`alert(e)`
                 }
             }
         }
