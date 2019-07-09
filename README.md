@@ -58,6 +58,6 @@ module: {
 |Name|Type|Default|Description|
 |:--:|:--:|:--:|:----------|
 |**`identifier`**|`{String}`|`"e"`|`catch 子句中的错误对象标识符`
-|**`catchCode`**|`{String|Function}`|`console.error(e)`|`catch 子句中的代码片段`
+|**`catchCode`**|`{String \| Function}`|`console.error(e)`|`catch 子句中的代码片段`
 |**`alwaysInject`**|`{Boolean}`|`false`|`当 await 已经存在 try/catch 时，是否始终注入`
 
