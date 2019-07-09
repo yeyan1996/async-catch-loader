@@ -72,5 +72,7 @@ module.exports = function (source) {
             }
         }
     })
-    return core.transformFromAst(ast).code
+    return core.transformFromAstSync(ast,null,{
+        configFile:false // 屏蔽 babel.config.js，否则会注入 polyfill 使得调试变得困难
+    }).code
 }
