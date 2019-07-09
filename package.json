@@ -30,15 +30,10 @@
     "@babel/types": "^7.5.0",
     "babel-jest": "^24.8.0",
     "babel-polyfill": "^6.26.0",
-    "husky": "^3.0.0",
+    "husky": "^2.4.0",
     "jest": "^24.8.0",
     "loader-utils": "^1.2.3",
     "memory-fs": "^0.4.1",
     "webpack": "^4.35.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test"
-    }
   }
 }
