@@ -3,6 +3,7 @@
 
 在开发中经常会使用 async/await 异步编程，同时也会频繁的使用 try/catch 捕获异步中的错误，使得业务代码充斥这 try/catch 非常的冗余，使用这个 loader 可以只在打包后的代码自动注入 try/catch，使得业务代码非常简洁
 
+
 ```javascript
 async function func() {
     let res = await new Promise(resolve => {
@@ -27,6 +28,9 @@ async function func() {
     }
 }
 ```
+
+## 2.0
+只捕获最外层的 async 函数，防止之前版本捕获每个 await 导致变量访问不到程序崩溃的问题
 
 ## Install
 
@@ -58,6 +62,6 @@ module: {
 |Name|Type|Default|Description|
 |:--:|:--:|:--:|:----------|
 |**`identifier`**|`{String}`|`"e"`|`catch 子句中的错误对象标识符`
-|**`catchCode`**|`{String \| Function}`|`console.error(e)`|`catch 子句中的代码片段`
+|**`catchCode`**|`{String}`|`console.error(e)`|`catch 子句中的代码片段`
 |**`alwaysInject`**|`{Boolean}`|`false`|`当 await 已经存在 try/catch 时，是否始终注入`
 

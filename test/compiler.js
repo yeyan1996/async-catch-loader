@@ -1,7 +1,7 @@
 require("babel-polyfill")
 const path = require("path")
 const webpack = require("webpack")
-const memoryfs  = require("memory-fs")
+const Memoryfs  = require("memory-fs")
 module.exports = (fixture, options = {}) => {
     const compiler = webpack({
         context: __dirname,
@@ -22,7 +22,7 @@ module.exports = (fixture, options = {}) => {
         }
     });
 
-    compiler.outputFileSystem = new memoryfs();
+    compiler.outputFileSystem = new Memoryfs();
 
     return new Promise((resolve, reject) => {
         compiler.run((err, stats) => {

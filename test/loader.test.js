@@ -48,9 +48,9 @@ test('Specified catchCode', async () => {
 }`);
 });
 
-test('Specified alwaysInject = false', async () => {
-    const stats = await compiler('example2.js', {
-        alwaysInject: false
+test('Specified finallyCode', async () => {
+    const stats = await compiler('example.js', {
+        finallyCode: `console.log("finally");`
     });
     const output = stats.toJson().modules[0].source;
     expect(output).toBe(`async function func() {
@@ -59,29 +59,9 @@ test('Specified alwaysInject = false', async () => {
       reject('抛出错误');
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
+  } finally {
+    console.log("finally");
   }
 }`);
-});
-
-
-test('Specified alwaysInject = true', async () => {
-    const stats = await compiler('example2.js', {
-        alwaysInject: true
-    });
-    const output = stats.toJson().modules[0].source;
-    expect(output).toBe(`async function func() {
-  try {
-    try {
-      await new Promise((resolve, reject) => {
-        reject('抛出错误');
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  } catch (e) {
-    console.log(e);
-  }
-}`);
-
 });
