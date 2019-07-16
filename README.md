@@ -40,7 +40,7 @@ npm i async-catch-loader -D
 
 ## Usage
 
-```
+```javascript
 // webpack.config.js
 
 module: {
