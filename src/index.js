@@ -10,13 +10,22 @@ const DEFAULT = {
     finallyCode:null
 }
 
-// 满足含有 async 关键字都函数声明或者函数表达式则返回 true
+/**
+ * 参数满足含有 async 关键字的
+ * 函数声明
+ * 函数表达式
+ * 方法
+ * 则返回 true
+ * **/
 const isAsyncFuncNode = node => {
-    return  t.isFunctionDeclaration(node, {
-        async: true
-    }) || t.isArrowFunctionExpression(node,{
-        async: true
-    })
+    return t.isObjectMethod(node, {
+            async: true
+        }) ||
+        t.isFunctionDeclaration(node, {
+            async: true
+        }) || t.isArrowFunctionExpression(node, {
+            async: true
+        })
 }
 
 module.exports = function (source) {
@@ -41,7 +50,7 @@ module.exports = function (source) {
     traverse(ast, {
         AwaitExpression(path) {
             // 递归向上找异步函数的 node 节点
-            while (path.node) {
+            while (path && path.node) {
                 let parentPath = path.parentPath
                 if ( // 找到 async Function
                     t.isBlockStatement(path.node) &&

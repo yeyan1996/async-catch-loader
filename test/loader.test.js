@@ -30,6 +30,26 @@ test('should works on asynchronous function expression', async () => {
 });
 
 
+test('should works on object method', async () => {
+    const stats = await compiler('example4.js');
+    const output = stats.toJson().modules[0].source;
+    expect(output).toBe(`const vueComponent = {
+  methods: {
+    async func() {
+      try {
+        await new Promise((resolve, reject) => {
+          reject('抛出错误');
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+  }
+};`);
+});
+
+
 test('Specified identifier', async () => {
     const stats = await compiler('example.js', {
         identifier: "err"
