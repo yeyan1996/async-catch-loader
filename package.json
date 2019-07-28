@@ -1,10 +1,10 @@
 {
   "name": "async-catch-loader",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "a webpack loader that captures error of async function",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest  --detectOpenHandles "
+    "test": "jest  --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -30,10 +30,22 @@
     "@babel/types": "^7.5.0",
     "babel-jest": "^24.8.0",
     "babel-polyfill": "^6.26.0",
-    "husky": "^2.4.0",
+    "eslint": "^6.1.0",
+    "husky": "^2.6.0",
     "jest": "^24.8.0",
+    "lint-staged": "^9.2.1",
     "loader-utils": "^1.2.3",
     "memory-fs": "^0.4.1",
     "webpack": "^4.35.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run test"
+    }
+  },
+  "lint-staged": {
+    "src/*.{js}": [
+      "eslint --fix"
+    ]
   }
 }

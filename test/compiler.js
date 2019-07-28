@@ -1,7 +1,7 @@
-require("babel-polyfill")
-const path = require("path")
-const webpack = require("webpack")
-const Memoryfs  = require("memory-fs")
+require('babel-polyfill');
+const path = require('path');
+const webpack = require('webpack');
+const Memoryfs  = require('memory-fs');
 module.exports = (fixture, options = {}) => {
     const compiler = webpack({
         context: __dirname,
@@ -30,4 +30,4 @@ module.exports = (fixture, options = {}) => {
             resolve(stats);
         });
     });
-}
+};
