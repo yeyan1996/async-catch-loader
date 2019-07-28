@@ -1,9 +1,9 @@
-const compiler = require('./compiler.js');
+const compiler = require("./compiler.js");
 
-test('should works without options', async () => {
-    const stats = await compiler('example.js');
-    const output = stats.toJson().modules[0].source;
-    expect(output).toBe(`async function func() {
+test("should works without options", async () => {
+  const stats = await compiler("example.js");
+  const output = stats.toJson().modules[0].source;
+  expect(output).toBe(`async function func() {
   try {
     await new Promise((resolve, reject) => {
       reject('抛出错误');
@@ -14,14 +14,12 @@ test('should works without options', async () => {
 }`);
 });
 
-
-
-test('Specified identifier', async () => {
-    const stats = await compiler('example.js', {
-        identifier: 'err'
-    });
-    const output = stats.toJson().modules[0].source;
-    expect(output).toBe(`async function func() {
+test("Specified identifier", async () => {
+  const stats = await compiler("example.js", {
+    identifier: "err"
+  });
+  const output = stats.toJson().modules[0].source;
+  expect(output).toBe(`async function func() {
   try {
     await new Promise((resolve, reject) => {
       reject('抛出错误');
@@ -32,13 +30,13 @@ test('Specified identifier', async () => {
 }`);
 });
 
-test('Specified catchCode', async () => {
-    const stats = await compiler('example.js', {
-        identifier: 'errObject',
-        catchCode: 'console.log(errObject)'
-    });
-    const output = stats.toJson().modules[0].source;
-    expect(output).toBe(`async function func() {
+test("Specified catchCode", async () => {
+  const stats = await compiler("example.js", {
+    identifier: "errObject",
+    catchCode: "console.log(errObject)"
+  });
+  const output = stats.toJson().modules[0].source;
+  expect(output).toBe(`async function func() {
   try {
     await new Promise((resolve, reject) => {
       reject('抛出错误');
@@ -49,12 +47,12 @@ test('Specified catchCode', async () => {
 }`);
 });
 
-test('Specified finallyCode', async () => {
-    const stats = await compiler('example.js', {
-        finallyCode: 'console.log("finally");'
-    });
-    const output = stats.toJson().modules[0].source;
-    expect(output).toBe(`async function func() {
+test("Specified finallyCode", async () => {
+  const stats = await compiler("example.js", {
+    finallyCode: 'console.log("finally");'
+  });
+  const output = stats.toJson().modules[0].source;
+  expect(output).toBe(`async function func() {
   try {
     await new Promise((resolve, reject) => {
       reject('抛出错误');
@@ -67,12 +65,10 @@ test('Specified finallyCode', async () => {
 }`);
 });
 
-
-
-test('should works on arrow function expression', async () => {
-    const stats = await compiler('example3.js');
-    const output = stats.toJson().modules[0].source;
-    expect(output).toBe(`const func = async () => {
+test("should works on arrow function expression", async () => {
+  const stats = await compiler("example3.js");
+  const output = stats.toJson().modules[0].source;
+  expect(output).toBe(`const func = async () => {
   try {
     await new Promise((resolve, reject) => {
       reject('抛出错误');
@@ -83,11 +79,10 @@ test('should works on arrow function expression', async () => {
 };`);
 });
 
-
-test('should works on function expression', async () => {
-    const stats = await compiler('example5.js');
-    const output = stats.toJson().modules[0].source;
-    expect(output).toBe(`const vueComponent = {
+test("should works on function expression", async () => {
+  const stats = await compiler("example5.js");
+  const output = stats.toJson().modules[0].source;
+  expect(output).toBe(`const vueComponent = {
   methods: {
     func: async function () {
       try {
@@ -102,11 +97,10 @@ test('should works on function expression', async () => {
 };`);
 });
 
-
-test('should works on object method', async () => {
-    const stats = await compiler('example4.js');
-    const output = stats.toJson().modules[0].source;
-    expect(output).toBe(`const vueComponent = {
+test("should works on object method", async () => {
+  const stats = await compiler("example4.js");
+  const output = stats.toJson().modules[0].source;
+  expect(output).toBe(`const vueComponent = {
   methods: {
     async func() {
       try {
