@@ -29,9 +29,6 @@ async function func() {
 }
 ```
 
-## 2.0
-只捕获最外层的 async 函数，防止之前版本捕获每个 await 导致变量访问不到程序崩溃的问题
-
 ## Install
 
 ```
