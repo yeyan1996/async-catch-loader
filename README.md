@@ -1,7 +1,12 @@
 # async-catch-loader
-一个自动给 async 函数注入 try/catch 的 webpack loader
 
-在开发中经常会使用 async/await 异步编程，同时也会频繁的使用 try/catch 捕获异步中的错误，使得业务代码充斥这 try/catch 非常的冗余，使用这个 loader 可以只在打包后的代码自动注入 try/catch，使得业务代码非常简洁
+English | [中文](./README.md)
+
+A webpack loader that can automatically injects try/catch into async function
+
+In development, async/await asynchronous programming is often used, and try/catch is frequently used to catch asynchronous errors, which makes the business code full of try/catch very redundant. 
+
+Using this loader, you can only automatically inject try/catch into the packaged code. Makes the business code very simple
 
 
 ```javascript
@@ -14,7 +19,8 @@ async function func() {
 }
 ```
 
-打包后自动注入 try/catch
+try/catch is automatically injected after packaging
+
 ```javascript
 async function func() {
     try {
@@ -39,7 +45,6 @@ npm i async-catch-loader -D
 
 ```javascript
 // webpack.config.js
-
 module: {
     rules: [
         {
@@ -56,9 +61,9 @@ module: {
 ```
 
 ## Options
-|Name|Type|Default|Description|
-|:--:|:--:|:--:|:----------|
-|**`identifier`**|`{string}`|`"e"`|`catch 子句中的错误对象标识符`
-|**`catchCode`**|`{string}`|`"console.error(e)"`|`catch 子句中的代码片段`
-|**`finallyCode`**|`{string}`|`undefined`|`finally 子句中的代码片段`
+|       Name        |    Type    |       Default        | Description         |
+|:-----------------:|:----------:|:--------------------:|:--------------------|
+| **`identifier`**  | `{string}` |        `"e"`         | `The error object identifier in the catch clause` |
+|  **`catchCode`**  | `{string}` | `"console.error(e)"` | `Code snippet in the catch clause`    |
+| **`finallyCode`** | `{string}` |     `undefined`      | `The code snippet in the finally clause`  |
 
