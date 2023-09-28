@@ -1,6 +1,6 @@
 # async-catch-loader
 
-English | [中文](./README.md)
+English | [中文](./README-zh_CN.md)
 
 A webpack loader that can automatically injects try/catch into async function
 
